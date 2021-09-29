@@ -29,20 +29,23 @@ if ( $xlsx = SimpleXLSX::parse('countries_and_population.xlsx')) {
 	foreach ( $xlsx->rows( 0 ) as $k => $r ) {
 		echo '<tr>';
 		// Para var i < numero de colunas, faça
-		for ( $i = 0; $i < $num_cols; $i ++ ) {
+		for ( $i = 0; $i <= $num_cols; $i ++ ) {
 			// Se k (linha ta planilha) = 0, faça senão
 			if ($k == 0) {
 				echo '<th>' . ( ! empty( $r[ $i ] ) ? $r[ $i ] : '&nbsp;' ) . '</th>';
 			} else {
 				echo '<td>' . ( ! empty( $r[ $i ] ) ? $r[ $i ] : '&nbsp;' ) . '</td>';
 			}
-		}
-		// Se primeira linha for primeira linha, adicione mais uma linha com o valor more details
-		if ($k == 0) {
-				echo '<th>More details</th>';
-			} else {
-				echo '<td><button type="button" class="btn btn-outline-dark">Mais detalhes</button></td>';
+			if ($i == $num_cols) {
+				// Se primeira linha for primeira linha, adicione mais uma linha com o valor more details
+				if ($k == 0) {
+					echo '<th>More details</th>';
+				} else {
+					//Botão que esta ligado ao identificador de linha da tabela
+					echo '<td><button type="button" class="btn btn-outline-dark" title="'. $r [ 0 ] .'">Mais</button></td>';
+				}
 			}
+		}
 		echo '</tr>';
 	}
 } else {
