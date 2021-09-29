@@ -7,7 +7,7 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 
 // Biblioteca necessaria para o funcionamento
-require_once __DIR__.'/../src/SimpleXLSX.php';
+require_once __DIR__.'/src/SimpleXLSX.php';
 
 //Preparando arquivo
 if ( $xlsx = SimpleXLSX::parse('countries_and_population.xlsx')) {
