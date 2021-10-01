@@ -1,4 +1,5 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/9a3f1523ac.js" crossorigin="anonymous"></script>
 
 <?php
 
@@ -10,7 +11,7 @@ ini_set('display_errors', true);
 require_once __DIR__.'/src/SimpleXLSX.php';
 
 //Preparando arquivo
-if ( $xlsx = SimpleXLSX::parse('countries_and_population.xlsx')) {
+if ( $xlsx = SimpleXLSX::parse('ListaEmail.xlsx')) {
 
 	// output worksheet 1 (index = 0)
 
@@ -23,7 +24,7 @@ if ( $xlsx = SimpleXLSX::parse('countries_and_population.xlsx')) {
 	echo '<h2>'.$xlsx->sheetName( 0 ).'</h2>';
 
 	// Estruturando tabela
-	echo '<table class="table table-hover">';
+	echo '<table class="table table-hover" style="font-size: 15px">';
 
 	//Foreach para cada linha ser montada
 	foreach ( $xlsx->rows( 0 ) as $k => $r ) {
@@ -42,7 +43,13 @@ if ( $xlsx = SimpleXLSX::parse('countries_and_population.xlsx')) {
 					echo '<th>More details</th>';
 				} else {
 					//Botão que esta ligado ao identificador de linha da tabela
-					echo '<td><button type="button" class="btn btn-outline-dark" title="'. $r [ 0 ] .'">Mais</button></td>';
+					echo '<td>' .
+					'<div class="btn-group" role="group">' .
+					'<button type="button" class="btn btn-outline-dark" style="font-size: 15px" title="'. $r [ 0 ] .'"><i class="fas fa-globe"></i></button>' .
+					'<button type="button" class="btn btn-outline-dark" style="font-size: 15px" title="'. $r [ 0 ] .'"><i class="fas fa-edit"></i></button>' .
+					'<button type="button" class="btn btn-outline-dark" style="font-size: 15px" title="'. $r [ 0 ] .'"><i class="fas fa-eye"></i></button>' .
+					'</div>' .
+					'</td>';
 				}
 			}
 		}
