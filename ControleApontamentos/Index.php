@@ -8,11 +8,12 @@
 </head>
 <body>
 	<?php
+		require_once ("conexao.php");
 		$date;
 		date_default_timezone_set('America/Sao_Paulo');
   		$date = date('H:i');
 
-  		$fazendoServico = 0;
+  		$fazendoServico = 1;
   	?>
 
 	<div class="container m-1">
@@ -22,6 +23,7 @@
 			<p>Não há serviços cadastrados no momento;</p>
 			<form>
 				<p>Novo apontamento:</p>
+				<p>Horario é adicionado automaticamente;</p>
 				<p><textarea rows="10" cols="50"></textarea></p>
 				<input type="submit" name="btEnviar" value="Adicionar">
 			</form>
@@ -30,6 +32,7 @@
 		<form>
 			<div class="container" <?php if($fazendoServico == 1) {echo "";}  else { echo "hidden";}?>>
 				<p>Horário de inicio: <input type="text" disabled value="<?php echo $date; ?>"></p>
+				<p>O horario de termino é gerado automaticamente</p>
 				<p>Status: Em execução</p>
 				<p>Descrição do apontamento:</p>
 				<p><textarea rows="10" cols="50" disabled></textarea></p>
